@@ -29,7 +29,7 @@ create table if not exists ‫‪rides‬‬
 (
     id                           serial PRIMARY KEY,
     ‫‪passenger‬‬                INTEGER REFERENCES ‫‪passengers‬‬ (id),
-    ‫‪driver‬‬                   INTEGER references drivers (id),
+    ‫‪driver‬‬                   INTEGER REFERENCES drivers (id),
     ‫‪source_lat‬‬               float     NOT NULL,
     ‫‪source_lng‬‬               float     NOT NULL,
     ‫‪destination‬‬_lat‬‬        float     NOT NULL,
