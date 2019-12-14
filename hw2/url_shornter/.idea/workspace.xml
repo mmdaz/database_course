@@ -46,7 +46,7 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="root:ashghal_url_shortner_db@localhost" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@209417b5" type="9fbbdea:ServiceModel$ServiceNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@68483b23" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
             </expand>
             <select />
