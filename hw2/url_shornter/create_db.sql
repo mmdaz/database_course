@@ -28,16 +28,44 @@ create table request(
 
 create table factor(
     factor_id   serial  primary key,
-    url_id  serial references request(url_id),
+    request_id  serial references request(request_id),
     amount  int
 );
 
 create table comment(
     comment_id  serial  primary key,
-    context    varchar(50)
+    owner_id    serial references owner(owner_id),
+    context    varchar(50),
+    reply_to    serial references comment(comment_id)
 );
 
-create table apply(
-    url_id  serial references request(url_id)
-);
 
+CREATE OR REPLACE FUNCTION update_time()
+  RETURNS trigger AS
+$BODY$
+BEGIN
+    UPDATE url SET created_at = CURRENT_TIMESTAMP;
+   RETURN NEW;
+END;
+$BODY$;
+
+CREATE OR REPLACE FUNCTION update_status()
+  RETURNS trigger AS
+$BODY$
+BEGIN
+   UPDATE url SET service_status = 0;
+   RETURN NEW;
+END;
+$BODY$;
+
+
+CREATE TRIGGER update_url_time
+  AFTER INSERT
+  ON url
+  FOR EACH ROW
+  EXECUTE PROCEDURE update_time();
+
+CREATE TRIGGER update_url_status
+    BEFORE DELETE ON url
+        FOR EACH ROW
+            EXECUTE PROCEDURE update_status();
